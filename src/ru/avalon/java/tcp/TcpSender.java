@@ -30,7 +30,6 @@ public final class TcpSender {
         send(socket, message);
         // 5. Закрываем соединеие
         socket.close();
-        
     }
 
     /**
@@ -39,8 +38,11 @@ public final class TcpSender {
      * @return текстовое сообщение.
      */
     private static String prepareMessage() throws IOException {
+        /*
+         * Реализован метод prepareMessage класса TcpSender
+         */
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Введите сообщение: ");
+        System.out.print("Введите сообщение: ");
         return reader.readLine();
     }
 
@@ -50,7 +52,11 @@ public final class TcpSender {
      * @return экземпля типа {@link SocketAddress}
      */
     private static SocketAddress prepareAddress() throws UnknownHostException {
+        /*
+         * Реализован метод prepareAddress класса TcpSender
+         */
         return new InetSocketAddress(InetAddress.getLocalHost(), 8080);
+        
     }
 
     /**
@@ -64,6 +70,9 @@ public final class TcpSender {
      * @throws IOException
      */
     private static Socket connect(SocketAddress address) throws IOException {
+        /*
+         * Реализован метод connect класса TcpSender
+         */
         Socket socket = new Socket();
         socket.connect(address);
         return socket;
@@ -78,10 +87,15 @@ public final class TcpSender {
      * @throws IOException
      */
     private static void send(Socket socket, String message) throws IOException {
-        OutputStream outputStream = socket.getOutputStream();
-        PrintWriter printWriter = new PrintWriter(outputStream);
-        printWriter.println(message);
-        outputStream.flush();
+        /*
+         * Реализован метод send класса TcpSender
+         */
+        if (true) {
+            OutputStream stream = socket.getOutputStream();
+            PrintWriter writer = new PrintWriter(stream);
+            writer.println(message);
+            writer.flush();
+        }
     }
 
 }

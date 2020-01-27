@@ -18,13 +18,14 @@ public final class TcpReceiver {
 
     public static void main(String[] args) throws IOException {
         // 1. Определяем порт, на котором ожидается соединение.
-        final int port = 0;
+        final int port = 8080;
         // 2. Подготавливаем серверный сокет.
         final ServerSocket listener = prepareServerSocket(port);
         // 3. Принимаем соединение.
         Socket socket = listener.accept();
         // 4. Полоучаем сообщение.
         final String message = receive(socket);
+        System.out.print(message);
         // 5. Закрываем соединение.
         socket.close();
         // 6. Закрываем серверный сокет.
@@ -41,13 +42,16 @@ public final class TcpReceiver {
      * @return серверный сокет, связанный с портом {@code port}.
      */
     private static ServerSocket prepareServerSocket(int port) {
-        ServerSocket serverSocket = null;
+        /*
+         * Реализован метод prepareServerSocket класса TcpReceiver
+         */
+        ServerSocket socket = null;
         try {
-            serverSocket = new ServerSocket(port);
+            socket = new ServerSocket(port);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return serverSocket;
+            e.printStackTrace(System.err);
+        } 
+        return socket;
     }
 
     /**
@@ -59,18 +63,18 @@ public final class TcpReceiver {
      * @return строковое сообщение.
      */
     private static String receive(Socket socket) throws IOException {
+        /*
+         * Реализован метод receive класса TcpReceiver
+         */
         String received = "";
         InputStream stream = socket.getInputStream();
         while(received.isEmpty()) {
-            if(stream.available() > 0) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-                received = reader.readLine();
-                System.out.print(received);
-            }
+        if(stream.available() > 0) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            received = reader.readLine();
         }
-        
+        }
         return received;
-        
     }
-   
+
 }

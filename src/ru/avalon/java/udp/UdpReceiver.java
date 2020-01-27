@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
+
 /**
  * Упражнение, на правленное на выработку умений, связанных с полученеим
  * сообщений, отправленных с использование протокола UDP.
@@ -19,7 +20,7 @@ public final class UdpReceiver {
         // 2. Формируем пакет, на основе созданного буфера.
         final DatagramPacket packet = preparePacket(buffer);
         // 3. Выбираем порт, на который ожидается получение сообщения.
-        final int port = 0;
+        final int port = 8081;
         // 4. Формируем сокет, связанный с выбранным портом.
         final DatagramSocket socket = prepareSocket(port);
         // 5. Получаем сообщение.
@@ -36,7 +37,10 @@ public final class UdpReceiver {
      * @return двоичный массив.
      */
     private static byte[] prepareBuffer() {
-        return new byte[512];
+        /*
+         * Реализоваy метод prepareBuffer класса UdpReceiver
+         */
+        return  new byte[512];
     }
 
     /**
@@ -49,6 +53,9 @@ public final class UdpReceiver {
      * @return экземпляр типа {@link DatagramPacket}.
      */
     private static DatagramPacket preparePacket(byte[] buffer) {
+        /*
+         * Реализован метод preparePacket класса UdpReceiver
+         */
         return new DatagramPacket(buffer, buffer.length);
     }
 
@@ -59,8 +66,16 @@ public final class UdpReceiver {
      *
      * @return сокет.
      */
-    private static DatagramSocket prepareSocket(int port) throws SocketException {
-        DatagramSocket socket = new DatagramSocket(port);
+    private static DatagramSocket prepareSocket(int port) {
+        DatagramSocket socket = null;
+        try {
+            /*
+            * Реализован метод prepareSocket класса UdpReceiver
+            */
+            socket = new DatagramSocket(port);
+        } catch (SocketException e) {
+            e.printStackTrace(System.err);
+        }
         return socket;
     }
 
@@ -73,6 +88,9 @@ public final class UdpReceiver {
      * @return строковое сообщение.
      */
     private static String getMessage(DatagramPacket packet) {
+        /*
+         * Реализован метод getMessage класса UdpReceiver
+         */
         String result = new String(packet.getData(), 0, packet.getLength());
         System.out.println(result);
         return result;

@@ -41,8 +41,11 @@ public final class UdpSender {
      * @return текстовое сообщение.
      */
     private static String prepareMessage() throws IOException {
+        /*
+         * TODO Реализовать метод prepareMessage класса UdpSender
+         */
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Введите сообщение: ");
+        System.out.print("Введите сообщение: ");
         return reader.readLine();
     }
 
@@ -52,7 +55,11 @@ public final class UdpSender {
      * @return адрес конечной точки.
      */
     private static SocketAddress prepareAddress() throws UnknownHostException {
+        /*
+         * Реализован метод prepareAddress класса UdpSender
+         */
         return new InetSocketAddress(InetAddress.getLocalHost(), 8081);
+        
     }
 
     /**
@@ -62,6 +69,9 @@ public final class UdpSender {
      * @throws IOException
      */
     private static DatagramSocket createSocket() throws IOException {
+        /*
+         * Реализован метод createSocket класса UdpSender
+         */
         return new DatagramSocket();
     }
 
@@ -73,8 +83,10 @@ public final class UdpSender {
      * @return экземпляр типа {@link DatagramPacket}.
      */
     private static DatagramPacket pack(String message) {
+        /*
+         * TODO Реализовать метод pack класса UdpSender
+         */
         return new DatagramPacket(message.getBytes(), message.getBytes().length);
-        
     }
 
 }
