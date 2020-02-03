@@ -2,9 +2,11 @@ package ru.avalon.java.tcp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -95,6 +97,11 @@ public final class TcpSender {
             PrintWriter writer = new PrintWriter(stream);
             writer.println(message);
             writer.flush();
+            InputStream newStream = socket.getInputStream();
+            Reader reader = new InputStreamReader(newStream);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String received = bufferedReader.readLine();
+            System.out.println(received);
         }
     }
 

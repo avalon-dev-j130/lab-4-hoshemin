@@ -1,9 +1,12 @@
 package ru.avalon.java.tcp;
 
+import static com.sun.xml.internal.ws.streaming.XMLStreamWriterUtil.getOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -72,6 +75,10 @@ public final class TcpReceiver {
         if(stream.available() > 0) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
             received = reader.readLine();
+            OutputStream newStream = socket.getOutputStream();
+            PrintWriter writer = new PrintWriter(newStream);
+            writer.write(received + " обраточка");
+            writer.flush();
         }
         }
         return received;
